@@ -33,6 +33,7 @@ const int START_POS_Y_SNAKE = HEIGHT / 2;
 const int SPEED = 500000;
 const string FILENAME = "score.txt";
 const int NB_OBSTACLE = 8;
+const char TXT_SEPAR = ' ';
 
 /**
 * @brief Fonction affichant le menu et supprimant l'affichage du terminal.
@@ -46,6 +47,18 @@ void restart(int score);
 * @param score score actuel du joueur.
 */
 void getInstructions(int score);
+
+/**
+* @brief Fonction affichant le classement et supprimant l'affichage du terminal.
+* Cette fonction permet aussi de quitter le classement.
+* @param score score actuel du joueur.
+*/
+void getRanking(int score);
+
+/**
+* @brief Fonction demandant le nom de l'utilisateur
+*/
+void getUsername(int score);
 
 /**
 * @brief Fonction affichant le menu de recherche de score
@@ -130,6 +143,7 @@ int main()
                 // met en pause le système définissant la vitesse du serpent.
                 mySleep(SPEED);
             }
+            getUsername(snakeSize);
         }
         // test si on souhaite afficher le menu
         else if (input.at(0) == KEY_INSTRUCTION)
@@ -140,6 +154,9 @@ int main()
         // test si on souhaite arrêter de jouer.
         else if (input.at(0) == KEY_QUIT)
             shutDown = true;
+        // test si on souhaite afficher le classement
+        else if (input.at(0) == KEY_RANKING)
+            getRanking(snakeSize);
 
     } while (shutDown == false);
     return 0;
@@ -160,6 +177,33 @@ void getInstructions(int score)
     cin >> input;
     if (input.at(0) == KEY_MENU)
         restart(score);
+}
+
+void getRanking(int score)
+{
+    clearScreen();
+    displayRanking(FILENAME, TXT_SEPAR);
+
+    string input;
+    cin >> input;
+    if (input.at(0) == KEY_MENU)
+        restart(score);
+
+}
+
+void getUsername(int score) {
+    clearScreen();
+    string stringScore = to_string(score);
+    string username;
+    string separation = " ";
+    std::cout << ENTER_USER ;
+    std::cin >> username ;
+    vector<string> userAndScore;
+    userAndScore.push_back(username);
+    userAndScore.push_back(separation);
+    userAndScore.push_back(stringScore);
+    writeFile(FILENAME, userAndScore );
+
 }
 
 void getUserScore(int score)

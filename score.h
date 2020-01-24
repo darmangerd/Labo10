@@ -20,6 +20,8 @@
 #include <algorithm>
 #include <fstream>
 
+using VecStr = std::vector<std::string>;
+
 const std::string FILE_SEPARATOR=" ";// Le caractère qui permet de séparer le nom d'utilisateur et son score dans le fichier
 using VecStr = std::vector<std::string>;
 
@@ -29,6 +31,12 @@ using VecStr = std::vector<std::string>;
 @return                     retourne le dictionnaire sous la forme d'un vector<string>
 */
 VecStr readFromFile(const std::string &fileName);
+
+/**
+@brief     Ecrit le nom d'utilisateur et le score dans un fichier txt
+@param
+*/
+void writeFile(const std::string &fileName, VecStr& texte);
 
 /**
 @brief                      Permet de récupérer tous les noms d'utilisateurs sans leurs scores

@@ -30,6 +30,11 @@ void displayMenu(int score);
 void displayInstructions();
 
 /**
+* @brief Fonction affichant les informations du classement au terminal.
+*/
+void displayRanking(std::string s, const char);
+
+/**
 * @brief Fonction affichant le plateau de jeu.
 * @param width largeur du plateau de jeu.
 * @param height hauteur du plateau de jeu.

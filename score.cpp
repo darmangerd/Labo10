@@ -40,6 +40,17 @@ VecStr readFromFile(const string &fileName) {
     return scoreList;
 }
 
+void writeFile(const string &fileName, VecStr& texte) {
+    fstream ofile;
+    ofile.open(fileName, ios::out | ios::app);
+    for(auto it = texte.begin(); it != texte.end(); ++it) {
+        ofile << *it ;
+
+    }
+    ofile << endl;
+    ofile.close();
+}
+
 void getAllUsername(VecStr listScore, VecStr& listUsername)
 {
     std::string username;
